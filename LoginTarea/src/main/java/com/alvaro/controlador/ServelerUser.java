@@ -43,15 +43,15 @@ public class ServelerUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		String usu = request.getParameter("Usuario");
 		String contra = request.getParameter("contra");
-		String cerrarSeccion = request.getParameter("btncerrar");
+		String cerrar = request.getParameter("btnCerrar");	
 		
-		if(cerrarSeccion !=null) {
-		if(cerrarSeccion.equals("Cerrar")) {
-			HttpSession cerrarseciones = (HttpSession) request.getSession();
-			cerrarseciones.invalidate();
-			response.sendRedirect("index.jsp");
-		}
-		}
+		if(cerrar!=null) {
+			if(cerrar.equals("CERRAR")) {
+				HttpSession cerrarseciones = (HttpSession) request.getSession();
+				cerrarseciones.invalidate();
+				response.sendRedirect("index.jsp");	
+			}
+			}
 		else {
 		TbUsuario usua = new TbUsuario();
 		tbUsuarioDao usuDao = new tbUsuarioDao();
@@ -66,14 +66,10 @@ public class ServelerUser extends HttpServlet {
 			Tb1Historialusuario histo = new Tb1Historialusuario();
 			historialDao histodao = new historialDao();
 			Date fecha = new Date();
-			
-			
 			histo.setFecha(fecha);
 			usua.setIdUsuario(usua.getIdUsuario());
 			histo.setTbUsuario(usua);
 			histodao.agregarDatosHistorial(histo);
-			
-			
 			
 			HttpSession seccion = request.getSession(true);
 			seccion.setAttribute("Usuario", usu);
@@ -82,10 +78,9 @@ public class ServelerUser extends HttpServlet {
 		else {
 			System.out.println("Nel no funciono");
 		}
-		}
-	
-	}
 
+	}
+	}
 	}
 
 

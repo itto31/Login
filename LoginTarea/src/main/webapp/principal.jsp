@@ -7,16 +7,19 @@
 <title>Insert title here</title>
 </head>
 <%
-HttpSession seccionn= (HttpSession) request.getSession();
-String usuariovariableseccion= (String)seccionn.getAttribute("Usuario");
-if(usuariovariableseccion==null){
+HttpSession seccionp = (HttpSession) request.getSession();
+String usuarioseccion = (String) seccionp.getAttribute("Usuario");
+if(usuarioseccion==null){
 	response.sendRedirect("index.jsp");
 }
 %>
 <body>
-<form action="ServelerUser" method="post">
-<input type="submit" value="Cerrar" name="btncerrar">
+<form action="ServelerUser" method = "post">
+
+<input type="submit" value ="CERRAR" name="btnCerrar">
+
 </form>
-<h1>Hola desde principal</h1>
+<a href="historialUsuarios.jsp">VER HISTORIAL DE USUARIOS </a>
+<h1>Hola desde el principal</h1>
 </body>
 </html>

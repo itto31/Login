@@ -22,10 +22,11 @@ public class tbUsuarioDao {
 			em.getTransaction().begin();
 			lisusu = em.createQuery("from TbUsuario as t where t.usuario = '"+usu.getUsuario()+"'and t.contrasena='"+usu.getContrasena()+"' ").getResultList();		
 			em.getTransaction().commit();
-			for (TbUsuario datosids:lisusu) {
+			for(TbUsuario datosid:lisusu) {
+				usu.setIdUsuario(datosid.getIdUsuario());
 				
-				usu.setIdUsuario(datosids.getIdUsuario());
 			}
+			
 			
 		} catch (Exception e) {
 			

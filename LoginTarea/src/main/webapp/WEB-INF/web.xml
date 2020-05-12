@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>com.alvaro.controlador.ServelerUser</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>servelethistorial</servlet-name>
+  	<display-name>servelethistorial</display-name>
+  	<description></description>
+  	<servlet-class>com.alvaro.controlador.servelethistorial</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ServelerUser</servlet-name>
   	<url-pattern>/ServelerUser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>servelethistorial</servlet-name>
+  	<url-pattern>/servelethistorial</url-pattern>
   </servlet-mapping>
 </web-app>
