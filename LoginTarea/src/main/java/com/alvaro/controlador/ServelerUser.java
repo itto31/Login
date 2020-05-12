@@ -1,13 +1,17 @@
 package com.alvaro.controlador;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alvaro.DAO.historialDao;
 import com.alvaro.DAO.tbUsuarioDao;
+import com.alvaro.modelo.Tb1Historialusuario;
 import com.alvaro.modelo.TbUsuario;
 
 /**
@@ -59,6 +63,18 @@ public class ServelerUser extends HttpServlet {
 		
 		int verificarusuario = usuDao.ListaUsuarios(usua).size();
 		if(verificarusuario == 1) {
+			Tb1Historialusuario histo = new Tb1Historialusuario();
+			historialDao histodao = new historialDao();
+			Date fecha = new Date();
+			
+			
+			histo.setFecha(fecha);
+			usua.setIdUsuario(usua.getIdUsuario());
+			histo.setTbUsuario(usua);
+			histodao.agregarDatosHistorial(histo);
+			
+			
+			
 			HttpSession seccion = request.getSession(true);
 			seccion.setAttribute("Usuario", usu);
 			response.sendRedirect("principal.jsp");
