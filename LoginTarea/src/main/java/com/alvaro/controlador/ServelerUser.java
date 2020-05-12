@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alvaro.DAO.tbUsuarioDao;
 import com.alvaro.modelo.TbUsuario;
@@ -38,7 +39,16 @@ public class ServelerUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		String usu = request.getParameter("Usuario");
 		String contra = request.getParameter("contra");
+		String cerrarSeccion = request.getParameter("btncerrar");
 		
+		if(cerrarSeccion !=null) {
+		if(cerrarSeccion.equals("Cerrar")) {
+			HttpSession cerrarseciones = (HttpSession) request.getSession();
+			cerrarseciones.invalidate();
+			response.sendRedirect("index.jsp");
+		}
+		}
+		else {
 		TbUsuario usua = new TbUsuario();
 		tbUsuarioDao usuDao = new tbUsuarioDao();
 		
@@ -49,12 +59,15 @@ public class ServelerUser extends HttpServlet {
 		
 		int verificarusuario = usuDao.ListaUsuarios(usua).size();
 		if(verificarusuario == 1) {
-			System.out.println("Entrastes");
+			HttpSession seccion = request.getSession(true);
+			seccion.setAttribute("Usuario", usu);
+			response.sendRedirect("principal.jsp");
 		}
 		else {
 			System.out.println("Nel no funciono");
 		}
-	response.sendRedirect("index.jsp");
+		}
+	
 	}
 
 	}
